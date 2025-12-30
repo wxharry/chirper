@@ -6,6 +6,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Chirp;
+use Illuminate\Database\Eloquent\relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -44,5 +46,13 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Get the chirps for the user.
+     */
+    public function chirps(): HasMany
+    {
+        return $this->hasMany(Chirp::class);
     }
 }
