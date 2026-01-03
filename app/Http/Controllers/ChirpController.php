@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use App\Models\Chirp;
 
 class ChirpController extends Controller
 {
+    use AuthorizesRequests;
     /**
      * Display a listing of the resource.
      */
@@ -59,7 +61,7 @@ class ChirpController extends Controller
      */
     public function edit(Chirp $chirp)
     {
-        $this->authorize('edit', $chirp);
+        $this->authorize('update', $chirp);
 
         return view('chirps.edit', compact('chirp'));
     }
